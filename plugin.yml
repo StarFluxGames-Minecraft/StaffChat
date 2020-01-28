@@ -1,0 +1,13 @@
+ name: StaffChat
+ version: 1.0
+ description: Allows players with permission to access a private chat
+ author: StarFluxGames
+ authors: [StarFluxGames] 
+ website: http://starfluxgames.com/
+ 
+ main: com.starfluxgames.staffchat.Main
+ 
+ commands:
+   staffchat:
+     description: Toggles staff chat
+     alias: sc
