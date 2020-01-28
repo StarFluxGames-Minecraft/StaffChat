@@ -19,6 +19,10 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public List<UUID> staffChatPlayers = new ArrayList<UUID>();
 
+	/*
+	 * This plugin code is untested.
+	 */
+	
 	@Override
 	public void onEnable() {
 		loadConfigManager();
