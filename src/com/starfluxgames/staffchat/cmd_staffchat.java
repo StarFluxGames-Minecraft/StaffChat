@@ -33,14 +33,18 @@ public class cmd_staffchat implements CommandExecutor{
 			{
 				plugin.staffChatPlayers.remove(player.getUniqueId());
 				player.sendMessage(ChatColor.RED + "You are no longer sending in staff chat");
+				return true;
 			}else 
 			{
 				plugin.staffChatPlayers.add(player.getUniqueId());
 				player.sendMessage(ChatColor.GREEN + "You are now sending in staff chat");
+				return true;
 			}
+		}else
+		{
+			player.sendMessage(ChatColor.RED + "Invalid Permissions!");
+			return false;
 		}
-		
-		return false;
 	}
 	
 }

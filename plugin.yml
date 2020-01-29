@@ -10,4 +10,4 @@
  commands:
    staffchat:
      description: Toggles staff chat
-     alias: sc
+     aliases: sc

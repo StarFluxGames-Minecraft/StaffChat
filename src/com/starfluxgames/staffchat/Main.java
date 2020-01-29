@@ -45,7 +45,11 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void loadConfig() {
-		staffChatPlayers = (List<UUID>) cfgm.maincfg.getList("staffchatters");
+		if (cfgm.maincfg.contains("staffchatters"))
+		{
+			staffChatPlayers = (List<UUID>) cfgm.maincfg.getList("staffchatters");	
+		}else
+			staffChatPlayers.clear();
 	}
 
 	public void loadConfigManager() {
@@ -58,22 +62,19 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event)
 	{
-		if (event.getPlayer().hasPermission("staffchat.chat") || event.getPlayer().isOp())
+		if (staffChatPlayers.contains(event.getPlayer().getUniqueId()))
 		{
-			if (staffChatPlayers.contains(event.getPlayer().getUniqueId()))
-			{
-				event.setCancelled(true);
-				sendStaffMessage(event.getMessage());
-			}
+			event.setCancelled(true);
+			sendStaffMessage(event.getMessage(), event.getPlayer());
 		}
 	}
 	
-	public void sendStaffMessage(String message)
+	public void sendStaffMessage(String message, Player sender)
 	{
 		for(Player player : Bukkit.getServer().getOnlinePlayers())
         {
-			if (player.hasPermission("staffchat.read") || player.isOp()) {
-				player.sendMessage(ChatColor.RED + "[!]" + ChatColor.RESET + message);
+			if (player.hasPermission("staffchat.read") || player.hasPermission("staffchat.chat") || player.isOp()) {
+				player.sendMessage(ChatColor.DARK_RED + "[!] " + sender.getName() + ": " + ChatColor.RED + message);
 			}
         }
 	}
